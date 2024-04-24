@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .users {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .users th, .users td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .users th {
+            background-color: #f2f2f2;
+        }
+
+        .users tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .users tr:hover {
+            background-color: #f2f2f2;
+        }
+
+        .create-link {
+            display: block;
+            margin-top: 20px;
+            text-align: right;
+        }
+
+        .create-link a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .create-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Users</h1>
+    <table class="users">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${listOfUsers}">
+            <td><a th:href="@{/users/{id}(id=${user.getId()})}" th:text="${user.getName()}"></a></td>
+            <td th:text="${user.getAge()}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="create-link">
+        <a href="/users/add">Create new User</a>
+    </div>
+</div>
+</body>
+</html>
