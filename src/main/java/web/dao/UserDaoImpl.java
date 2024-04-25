@@ -10,7 +10,6 @@ import java.util.List;
 
 
 @Repository
-@Transactional
 public class UserDaoImpl implements UserDao {
 
     @PersistenceContext
@@ -23,9 +22,8 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List<User> show() {
-        List<User> users = entityManager.createQuery
+        return entityManager.createQuery
                 ("SELECT p from User p", User.class).getResultList();
-        return users;
     }
 
     @Override
@@ -40,7 +38,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void remove(int id) {
-        entityManager.remove(entityManager.find(User.class,id));
+        entityManager.remove(entityManager.find(User.class, id));
     }
 
 
