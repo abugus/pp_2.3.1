@@ -71,7 +71,7 @@
         </thead>
         <tbody>
         <tr th:each="user : ${listOfUsers}">
-            <td><a th:href="@{/users/{id}(id=${user.getId()})}" th:text="${user.getName()}"></a></td>
+            <td><a th:href="@{/users/show?id={id}(id=${user.getId()})}" th:text="${user.getName()}"></a></td>
             <td th:text="${user.getAge()}"></td>
         </tr>
         </tbody>

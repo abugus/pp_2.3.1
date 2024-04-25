@@ -2,6 +2,7 @@ package web.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import web.model.User;
 import web.service.UserService;
@@ -32,26 +33,26 @@ public class UsersController {
         return "redirect:/users";
     }
 
-    @GetMapping("/{id}")
-    public String showUser(Model model, @PathVariable("id") int id) {
-        model.addAttribute("showUser",userService.index(id));
+    @GetMapping("/show")
+    public String showUser(Model model, @RequestParam("id") int id) {
+        model.addAttribute("showUser", userService.index(id));
         return "showUser";
     }
-
-    @GetMapping("/{id}/edit")
-    public String updateUser(Model model, @PathVariable("id") int id) {
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    @GetMapping("/editForm")
+    public String updateUser(Model model, @RequestParam("id") int id) {
         model.addAttribute("user", userService.index(id));
         return "editUser";
     }
 
-    @PostMapping("/{id}")
+    @PostMapping("/edit")
     public String editUser(@ModelAttribute("user") User user) {
         userService.update(user);
         return "redirect:/users";
     }
-
-    @PostMapping("/{id}/delete")
-    public String deleteUser(@PathVariable("id") int id) {
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    @PostMapping("/delete")
+    public String deleteUser(@RequestParam("id") int id) {
         userService.remove(id);
         return "redirect:/users";
     }

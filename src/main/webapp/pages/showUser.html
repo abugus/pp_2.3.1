@@ -59,10 +59,10 @@
 <div class="actions">
     <a href="/users/add">Create New User</a>
     <a href="/users">To Main</a>
-    <a th:href="@{/users/{id}/edit(id=${showUser.getId()})}">Edit User</a>
+    <a th:href="@{/users/editForm?id={id}(id=${showUser.getId()})}">Edit User</a>
 </div>
 
-<form th:method="delete" th:action="@{/users/{id}/delete(id=${showUser.getId()})}">
+<form th:method="delete" th:action="@{/users/delete?id={id}(id=${showUser.getId()})}">
     <button type="submit">Delete</button>
 </form>
 
